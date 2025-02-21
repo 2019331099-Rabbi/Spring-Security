@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS authorities (
     username VARCHAR(50) NOT NULL,
     authority VARCHAR(50) NOT NULL,
-    CONSTRAINT fk_authorities_users FOREIGN KEY (username) REFERENCES users (username)
+    CONSTRAINT fk_authorities_users FOREIGN KEY (username) REFERENCES users (username),
+    PRIMARY KEY (username, authority) -- Composite primary key replaces the unique index
 );
 
-CREATE UNIQUE INDEX ix_auth_username ON authorities (username, authority);
+-- Removed the CREATE UNIQUE INDEX statement
